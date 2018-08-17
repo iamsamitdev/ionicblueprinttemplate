@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, AlertController, Platform } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
@@ -19,6 +20,7 @@ export class TabHomePage {
     public navParams: NavParams,
     public app: App,
     public alertCtrl: AlertController,
+    public camera: Camera,
     public platform: Platform) {
 
       // ตรวจเช็คว่ามีตัวแปร userData อยู่ใน local storage หรือไม่
@@ -42,13 +44,33 @@ export class TabHomePage {
     this.app.getRootNav().push(LoginPage);
   }
 
-  logout() {
+  Logout() {
     localStorage.removeItem('userData');
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.setRoot(TabsPage); // reload tab
   }
 
   showRegister() {
     this.app.getRootNav().push(RegisterPage);
+  }
+
+  // ฟังก์ชันเรียกกล้องถ่ายรูปบนมือถือ
+  takeCamera(){
+    if(!this.platform.is('core')){
+        const options: CameraOptions = {
+          quality: 100,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE
+        }
+        
+        this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        }, (err) => {
+        // Handle error
+        });
+      }
   }
 
 }

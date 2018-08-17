@@ -17,11 +17,14 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = TabsPage;
-
   pages: Array<{title: string, component: any}>;
+  data:any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+
+    // Username ใน LocalStorage
+    this.data = localStorage.getItem('userData');
 
     // used for an example of ngFor and navigation
     this.pages = [

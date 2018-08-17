@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar transparent></ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngFor="let data of responseData">
+      <img src="http://localhost/cordovaapi/images/{{data.images}}" width="100%">
+      <div padding>
+        <ion-card-title>
+          {{data.name}}
+        </ion-card-title>
+        <div [innerHtml]="data.description"></div>
+        <p>Price : {{data.price}}</p>
+        <p>Date: {{data.create_at}}</p>
+      </div>
+    </div>
+
+</ion-content>

@@ -10,6 +10,27 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let data of responseData" (click)="courseDetail(data.id)">
+      <ion-thumbnail item-start>
+        <img src="http://localhost/cordovaapi/images/{{data.images}}">
+      </ion-thumbnail>
+      <h1>{{data.name}}</h1>
+      <p>{{data.description}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 
 </ion-content>

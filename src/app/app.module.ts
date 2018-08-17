@@ -24,7 +24,9 @@ import { SideSettingPage } from '../pages/side-setting/side-setting';
 import { TabsPage } from '../pages/tabs/tabs';
 import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
+import { CoursedetailPage } from '../pages/coursedetail/coursedetail';
 
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { LoginPage } from '../pages/login/login';
     SidePaymentPage,
     SideSettingPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    CoursedetailPage
   ],
   imports: [
     BrowserModule,
@@ -61,13 +64,15 @@ import { LoginPage } from '../pages/login/login';
     SidePaymentPage,
     SideSettingPage,
     RegisterPage,
-    LoginPage
+    LoginPage,
+    CoursedetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    WebapiServiceProvider
+    WebapiServiceProvider,
+    Camera
   ]
 })
 export class AppModule {}
