@@ -14,7 +14,6 @@ export class RegisterPage {
   userData = {
       "fullname":"",
       "email":"",
-      "tel":"",
       "username":"",
       "password":""
   }
